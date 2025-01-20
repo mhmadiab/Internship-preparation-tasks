@@ -1,0 +1,8 @@
+# Ignore client build artifacts
+client/build/
+client/node_modules/
+client/.env
+
+# Ignore server node_modules and environment files
+server/node_modules/
+server/.env
