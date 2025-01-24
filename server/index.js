@@ -14,6 +14,12 @@ const app = express()
 
 app.use(express.json());
 app.use(cors())
+app.use(cors({
+    origin: process.env.CLIENT_URL || '*', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true, // If using cookies or authentication
+  }));
+  
 
 connectDB()
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-const host = process.env.BACKEND_API || "http://localhost:4000"
+const host = process.env.BACKEND_API 
 
 const getAllItems = createAsyncThunk("item/getAllItems", async(_, ThunkAPI)=>{
     const {rejectWithValue} = ThunkAPI
