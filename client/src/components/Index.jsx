@@ -45,8 +45,8 @@ const Index = () => {
             />
             <div className="col-md-8">
               <h3>Item List</h3>
-              {getdata.length === 0 ? <RenderAlert variant="info" text={getmessage} /> : 
-               (
+              {/* {getdata.length === 0 ? <RenderAlert variant="info" text={getmessage} /> :  */}
+               {
                 getloading ? <Loading text="loading items..."/> : ( <Table striped bordered hover responsive="sm" className="mt-4 table-fit text-center">
                   <thead>
                     <tr>
@@ -83,7 +83,6 @@ const Index = () => {
                     ))}
                   </tbody>
                 </Table>)
-               )
               }
               
             </div>
