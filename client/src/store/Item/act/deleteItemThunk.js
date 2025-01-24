@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-const host = process.env.BACKEND_API || "http://localhost:4000"
+const host = process.env.REACT_APP_BACKEND_API || "http://localhost:4000"
 
 const deleteItem = createAsyncThunk("item/deleteitem", async(itemId, ThunkAPI)=>{
     const {rejectWithValue} = ThunkAPI
