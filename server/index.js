@@ -13,7 +13,8 @@ const itemRoutes = require("./routes/itemRoutes")
 const app = express()
 
 app.use(express.json());
-app.use(cors())
+// app.use(cors())
+app.use(cors({ origin: "https://internship-preparation-tasks-1.onrender.com" }));
 
 connectDB()
 
