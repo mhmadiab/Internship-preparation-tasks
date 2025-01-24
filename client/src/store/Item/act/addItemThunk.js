@@ -1,9 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
+const host = process.env.BACKEND_API || "http://localhost:4000"
+
 const addItem = createAsyncThunk("item/addItem", async(itemData, ThunkAPI)=>{
     const {rejectWithValue} = ThunkAPI
     try {
-        const response = await fetch("http://localhost:4000/api/item/additem", {
+        const response = await fetch(`${host}/api/item/additem`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json", 

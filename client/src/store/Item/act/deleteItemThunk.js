@@ -1,9 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
+const host = process.env.BACKEND_API || "http://localhost:4000"
+
 const deleteItem = createAsyncThunk("item/deleteitem", async(itemId, ThunkAPI)=>{
     const {rejectWithValue} = ThunkAPI
     try {
-        const response = await fetch(`http://localhost:4000/api/item/deleteitem/${itemId}`, {
+        const response = await fetch(`${host}/api/item/deleteitem/${itemId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json", 

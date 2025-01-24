@@ -1,9 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
+const host = process.env.BACKEND_API || "http://localhost:4000"
+
 const getAllItems = createAsyncThunk("item/getAllItems", async(_, ThunkAPI)=>{
     const {rejectWithValue} = ThunkAPI
     try {
-        const response = await fetch("http://localhost:4000/api/item/allitems")
+        const response = await fetch(`${host}/api/item/allitems`)
   
         if (!response.ok) {
           const errorData = await response.json()

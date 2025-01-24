@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+const host = process.env.BACKEND_API || "http://localhost:4000"
+
 const updateItem = createAsyncThunk(
   "item/updateItem",
   async (itemData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/api/item/updateitem/${itemData.itemId}`,
+        `${host}/api/item/updateitem/${itemData.itemId}`,
         {
           method: "PATCH",
           headers: {
