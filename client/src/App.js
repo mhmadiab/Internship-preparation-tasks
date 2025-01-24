@@ -1,11 +1,13 @@
 
 import './App.css';
-import Home from './components/Home';
+
+import Index from './components/Index';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      {/* <Home /> */}
+      <Index />
     </div>
   );
 }

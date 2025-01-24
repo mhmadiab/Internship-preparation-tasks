@@ -17,6 +17,7 @@
     "express": "^4.21.2",
     "google-libphonenumber": "^3.2.40",
     "libphonenumber-js": "^1.11.18",
+    "mongoose": "^8.9.5",
     "nodemon": "^3.1.9"
   }
 }

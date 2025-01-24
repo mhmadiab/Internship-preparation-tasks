@@ -6,18 +6,16 @@ const regionDisplayNames = new Intl.DisplayNames(['en'], { type: 'region' });
 const validateNumber = async (req, res) => {
     const { phoneNumber } = req.body;
 
-    if (!phoneNumber) {
-        return res.status(400).json({ error: 'Phone number is required.' });
-    }
+    
 
     try {
 
         const parsedPhone = phoneUtil.parseAndKeepRawInput(phoneNumber)
         const isValid = phoneUtil.isValidNumber(parsedPhone)
-
+ 
 
         if (!isValid) {
-            return res.status(400).json({ error: 'Invalid phone number.' })
+            return res.json({ message: 'Invalid phone number.' , data : null })
         }
 
         const regionCode = phoneUtil.getRegionCodeForNumber(parsedPhone)
@@ -26,7 +24,7 @@ const validateNumber = async (req, res) => {
        
 
         if (!isValidForRegion) {
-            return res.status(400).json({ error: `The number is invalid for the region: ${regionCode}.` })
+            return res.json({ message: `The number is invalid for the region: ${regionCode}.` , data : null })
         }
 
         const countryCode = parsedPhone.getCountryCode()
@@ -44,20 +42,20 @@ const validateNumber = async (req, res) => {
             },
         })
 
-        if (!response.data.valid) {
-            return res.status(400).json({ error: 'Invalid phone number according to Numverify.' })
-        }
 
         const operatorName = response.data.carrier || 'Unknown'
 
         res.json({
-            countryCode: `+${countryCode}`,
-            countryName,
-            operatorName,
+            message : "valid phone number",
+            data : {
+                countryCode: `+${countryCode}`,
+                countryName,
+                operatorName,
+            }
         })
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred while validating the phone number.' });
+        res.status(500).json({ message: 'An error occurred while validating the phone number.' , data : null})
     }
 };
 
