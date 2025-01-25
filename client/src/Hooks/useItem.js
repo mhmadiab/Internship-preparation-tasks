@@ -8,7 +8,13 @@ const useItem = ()=>{
     const dispatch = useDispatch()
 
     // const [items, setItems] = useState([]);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+      name: "",
+      description: "",
+      countryCode: "",
+      phoneNumber: "",
+
+    });
     const [formErrors, setFormErrors] = useState([])
     const [warnings, setWarnings] = React.useState({});
     const [modalShow, setModalShow] = React.useState(false);
@@ -86,17 +92,18 @@ const useItem = ()=>{
         phoneNumber: fullPhoneNumber
       }
 
-      dispatch(addItem(dataToSend))
-      .unwrap()
-      .then(()=>{
-        dispatch(getAllItems())
+      try {
+        await dispatch(addItem(dataToSend)).unwrap();
+        dispatch(getAllItems());
         setFormData({
           name: "",
           description: "",
           countryCode: "",
           phoneNumber: "",
-        })
-      })
+        });
+      } catch (err) {
+        console.error(err);
+      }
     };
   
     const handleEdit = (e, itemId) => {
