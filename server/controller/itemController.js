@@ -1,11 +1,14 @@
 const { default: axios } = require("axios")
 const itemModel = require("../Model/itemModel")
 
+
+const host = process.env.BACKEND_API || "http://localhost:4000"
+
 const additem = async(req, res, next)=>{
     try {
         const {name, description , phoneNumber} = req.body
         if(phoneNumber){
-            const response = await axios.post("http://localhost:4000/api/number/validatenumber", {phoneNumber})
+            const response = await axios.post(`${host}/api/number/validatenumber`, {phoneNumber})
 
             if (!response.data || response.data.message !== 'valid phone number') {
                 return res.json({ message: "Invalid phone number" });
@@ -37,7 +40,7 @@ const updateitem = async (req, res, next) => {
         const { phoneNumber, ...updateData } = req.body; 
 
         if (phoneNumber) {
-            const response = await axios.post("http://localhost:4000/api/number/validatenumber", { phoneNumber });
+            const response = await axios.post(`${host}/api/number/validatenumber`, { phoneNumber });
 
             if (!response.data || response.data.message !== 'valid phone number') {
                 return res.json({ message: "Invalid phone number" })
