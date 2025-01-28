@@ -2,7 +2,7 @@ import Loading from "../Loading/Loading"
 
 const RenderForm = ({mode , handleSubmit , handleBlur, warnings , formData, handleChange , loading}) => {
   return (
-    <form onSubmit={handleSubmit} className="col-md-4">
+    <form onSubmit={handleSubmit} className={mode === "add" ? "col-md-4" : ""}>
               <h3 className='mb-2'>{mode === 'edit' ? 'Edit' : 'Add'}</h3>
               {warnings?.name && <small style={{ color: "red" }}>{warnings.name}</small>}
               <input

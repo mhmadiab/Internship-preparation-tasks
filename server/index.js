@@ -12,18 +12,16 @@ const itemRoutes = require("./routes/itemRoutes")
 
 const app = express()
 
-app.use(express.json());
-// app.use(cors())
+app.use(express.json())
 const allowedOrigins = [
-  "http://localhost:3000", // Local frontend
-  "https://internship-preparation-tasks-1.onrender.com", // Deployed frontend
-];
+  "http://localhost:3000", 
+  "https://internship-preparation-tasks-1.onrender.com",
+]
 
-// CORS middleware with dynamic origin
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g., mobile apps, Postman) or in the list
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
@@ -31,7 +29,7 @@ app.use(
       }
     },
   })
-);
+)
 
 connectDB()
 
